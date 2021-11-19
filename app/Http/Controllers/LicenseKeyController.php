@@ -65,7 +65,7 @@ class LicenseKeyController extends Controller
                $segment .= $tokens[ rand( 0, strlen($tokens) - 1 ) ];
             }
             
-            if ($i < $segment) {
+            if ($i < ($segments - 1)) {
                 $key .= $segment . "-";
             } else {
                 $key .= $segment;
