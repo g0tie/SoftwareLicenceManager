@@ -21,9 +21,17 @@ class LicenseKeyController extends Controller
     public function generateKey()
     {
         $user = auth()->user();
+        $generatedKey = self::generateLicenseKey();
+        $isKeyAlreadyExists = LicenseKey::firstWhere('code', $generatedKey);
+
+        if ($isKeyAlreadyExists) {
+            $generatedKey = self::generateLicenseKey();
+        }
+
         $licenseKey = $user->licenseKey()->create([
-            'code' => self::generateLicenseKey(),
+            'code' => $generatedKey,
         ]);
+
         return redirect('dashboard');
     } 
 
@@ -39,17 +47,13 @@ class LicenseKeyController extends Controller
 
     public function verifyKey(Request $request)
     {
-        $user = User::where('email', $request->email);
-        $userKey = $user->licenseKey()->code;
-        $key = $request->key;
+        $key = LicenseKey::firstWhere('code', $request->key);
 
-        if ($key !== $userKey) {
-            return response(401)->json([
-                'status' => 401,
-                'msg' => "wrong key"
-            ]);
-        }
-
+        if (!key) return response(401)->json([
+            'status' => 401,
+            'msg' => 'key not found'
+        ]);
+        
         return response(200)->json([
             'status' => 200,
             'msg' => 'success'
