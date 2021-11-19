@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\LicenseKey;
+use App\Models\User;
 
 class LicenseKeyController extends Controller
 {
@@ -11,12 +12,13 @@ class LicenseKeyController extends Controller
     {
         $user = auth()->user();
         $licenseKey = $user->licenseKey()->create([
-            'code' => generateLicenseKey(),
+            'code' => self::generateLicenseKey(),
         ]);
 
-        return response()->json([
-            'code' => $licenseKey->code,
-        ]);
+        $activated = $licenseKey->activated; 
+        $licenseKey = $licenseKey->code; 
+
+        return redirect('dashboard')->with(compact('licenseKey', 'activated'));
     } 
 
     public function activateKey()
@@ -26,10 +28,7 @@ class LicenseKeyController extends Controller
             'activated' => true
         ]);
 
-        return response(200)->json([
-            'status' => 200,
-            'msg' => 'success'
-        ]);
+        return redirect()->back();
     }
 
     public function verifyKey(Request $request)

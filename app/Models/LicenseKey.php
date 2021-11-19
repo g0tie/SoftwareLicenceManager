@@ -10,4 +10,8 @@ class LicenseKey extends Model
     use HasFactory;
 
     public $timestamps = true;
+
+    protected $fillable = [
+        'code',
+    ];
 }
