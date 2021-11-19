@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\LicenseKey;
 use App\Models\User;
+use Illuminate\Http\Response;
 
 class LicenseKeyController extends Controller
 {
@@ -49,12 +50,12 @@ class LicenseKeyController extends Controller
     {
         $key = LicenseKey::firstWhere('code', $request->key);
 
-        if (!key) return response(401)->json([
+        if (!$key) return response()->json([
             'status' => 401,
             'msg' => 'key not found'
         ]);
         
-        return response(200)->json([
+        return response()->json([
             'status' => 200,
             'msg' => 'success'
         ]);

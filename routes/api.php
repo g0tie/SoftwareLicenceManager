@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/verify', [LicenseKeyController::class], 'verifyKey')
+Route::post('/verify', [LicenseKeyController::class, 'verifyKey'])
 ->name('verify');
