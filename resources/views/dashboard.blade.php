@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex flex-col align-items-center">
+            <div class="p-4 bg-white overflow-hidden shadow-sm sm:rounded-lg flex flex-col align-items-center">
                 <div class="p-6 bg-white border-b border-gray-200">
                    Welcome {{ auth()->user()->name }}
                 </div>
@@ -34,11 +34,11 @@
                 @endif
 
 
-                <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                <div class="my-6 py-6 max-w-sm rounded overflow-hidden shadow-lg">
                     <div class="px-6 py-4">
                       <div class="font-bold text-xl mb-2">License Key</div>
                       <p class="text-gray-700 text-base">
-                       Votre clé est la suivante: {{ Session::get('licenseKey')}}
+                       Votre clé est la suivante: <span class="font-bold">{{ Session::get('licenseKey')}}</span>
                       </p>
                     </div>
                     @if (Session::get('activated') == False)
