@@ -7,7 +7,7 @@ Made in PHP with Laravel
 
 <h3>Connect with an account or create one</h3>
 
-Login           |  register
+Login           |  Register
 :-------------------------:|:-------------------------:
  ![image](https://user-images.githubusercontent.com/56622131/142602360-8c88facd-4ac3-4f55-ac99-427ecb4c8eb5.png) | ![image](https://user-images.githubusercontent.com/56622131/142602401-2f55b9c5-08cc-497b-88f2-599798a97633.png)
   
@@ -25,18 +25,27 @@ When your key is activated a message will apear
 
 <h2>Installation</h2>
 
-You need composer and npm to install this project
+You need composer and npm to install this project.
+</br>
+First you need to add your db connection infos in .env by copying and renaming <code>.env.example</code> into <code>.env</code>
+
+<h3>install via your shell/terminal</h3>
 
 ```bash
+//get to the project directory
+
 //Install dependencies
 composer install
 npm install && npm run dev
-```
 
-```php
 //migrate database
 php artisan migrate
 
 //generate app key
 php artisan key:generate
 ```
+
+
+
+
+
