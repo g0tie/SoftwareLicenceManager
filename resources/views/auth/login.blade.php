@@ -50,7 +50,22 @@
                 <x-button class="ml-3">
                     {{ __('Log in') }}
                 </x-button>
+                
+                <button 
+                onclick="register()"
+                type="button"
+                class="ml-2 inline-flex items-center px-4 py-2 hover:bg-gray-600 text-white border-gray-800 bg-gray-800 border bg-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                   Register
+                </button>
+                
             </div>
         </form>
     </x-auth-card>
 </x-guest-layout>
+
+<script>
+    function register(e)
+    {
+        window.location.href = "{{ route('register') }}" ;
+    }
+</script>

@@ -15,7 +15,7 @@ class CreateLicenseKeysTable extends Migration
     {
         Schema::create('license_keys', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->nullable();
+            $table->text('code')->nullable();
             $table->foreignId('user_id')
             ->constrained()
             ->onDelete('cascade');
