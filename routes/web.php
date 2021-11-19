@@ -17,9 +17,9 @@ Route::get('/', function () {
    return redirect('/dashboard');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [LicenseKeyController::class, 'dashboard'])
+->middleware(['auth'])
+->name('dashboard');
 
 Route::post('/activateKey', [LicenseKeyController::class, 'activateKey'])
 ->name("activateKey")

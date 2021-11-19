@@ -32,10 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $licenseKey = auth()->user()->licenseKey->code;
-        $activated = auth()->user()->licenseKey->activated;
-
-        return redirect()->intended(RouteServiceProvider::HOME)->with(compact('activated', 'licenseKey'));
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

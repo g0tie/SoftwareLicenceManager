@@ -8,17 +8,23 @@ use App\Models\User;
 
 class LicenseKeyController extends Controller
 {
+
+    public function dashboard()
+    {
+        $licenseKey = auth()->user()->licenseKey;
+        $activated = $licenseKey->activated; 
+        $licenseKey = $licenseKey->code; 
+
+        return view( 'dashboard', compact('licenseKey', 'activated') );
+    }
+
     public function generateKey()
     {
         $user = auth()->user();
         $licenseKey = $user->licenseKey()->create([
             'code' => self::generateLicenseKey(),
         ]);
-
-        $activated = $licenseKey->activated; 
-        $licenseKey = $licenseKey->code; 
-
-        return redirect('dashboard')->with(compact('licenseKey', 'activated'));
+        return redirect('dashboard');
     } 
 
     public function activateKey()
